@@ -41,7 +41,7 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 player = Player(room['outside'])
 
-print(player)
+# print(player)
 
 # Write a loop that:
 #
@@ -54,13 +54,22 @@ print(player)
 #
 # If the user enters "q", quit the game.
 
+# actions available to user
 moves = ['n', 's', 'e', 'w']
+actions = ['i', 'inventory']
+
+# welcome the user and give them instructions
+print("Welcome, adventurer. Navigate to find the treasure.\n")
+print("You can move your player using [n] north, [s] south, [e] east, and [w] west.\n")
+print("Pickup items using [get ItemName], drop items using [drop ItemName], or quit [q]\n")
 
 while True:
+    print("Currently: " + player.current_room.name)
     print(player.current_room.description)
     print(f'Items currently in the room: {player.current_room.items}')
-    move = input('Where do you want to move?\n')
-    if move == 'q':
+    print('What would you like to do?\n')
+    player_input = input("> ")
+    if player_input == 'q':
         exit()
-    elif move in moves:
-        player.move(f'{move}_to')
+    elif player_input in moves:
+        player.move(f'{player_input}_to')
