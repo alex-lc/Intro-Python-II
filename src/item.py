@@ -4,4 +4,10 @@ class Item:
         self.description = description
 
     def __str__(self):
-        return f'{self.name}'
+        return (f'{self.name}')
+
+    def on_take(self):
+        return (f"You have picked up [{self.name}].")
+
+    def on_drop(self):
+        return (f"You have dropped [{self.name}].")
