@@ -4,6 +4,7 @@
 class Player:
     def __init__(self, current_room):
         self.current_room = current_room
+        self.inventory = []
 
     def move(self, direction):
         new_room = getattr(self.current_room, direction)
@@ -11,6 +12,3 @@ class Player:
             self.current_room = new_room
         else:
             print('That move leads to nothing.')
-
-    # def __str__(self):
-    #     return f'You are currently: {self.keys()}'

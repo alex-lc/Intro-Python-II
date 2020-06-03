@@ -58,9 +58,9 @@ moves = ['n', 's', 'e', 'w']
 
 while True:
     print(player.current_room.description)
+    print(f'Items currently in the room: {player.current_room.items}')
     move = input('Where do you want to move?\n')
     if move == 'q':
         exit()
     elif move in moves:
         player.move(f'{move}_to')
-
