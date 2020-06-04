@@ -86,6 +86,8 @@ while True:
     elif player_input in actions:  # if the user opens their inventory, use our display inventory method
         player.display_inventory()
     elif "get" in player_input or "take" in player_input:
+        # if user inputs "get" or "take", determine if they've entered in
+        # a valid item that exists in the room, and use our pickup method
         print("Attempting to pick up item...")
         words = player_input.split()
 
@@ -98,9 +100,11 @@ while True:
                 player.pickup_item(found_item)
                 player.current_room.remove_item(found_item)
         else:
-            print("What are you trying to pickup?")
+            print("What are you trying to pickup?") # the user did not input an item, or it didn't exist
 
     elif "drop" in player_input:
+        # if the user inputs "drop", determine if they've entered in a
+        # valid item that exists in their inventory, and use our drop method
         print("Attempting to drop...")
         words = player_input.split()
 
@@ -112,4 +116,4 @@ while True:
                 player.current_room.add_item(found_item)
                 player.drop_item(found_item)
         else:
-            print("What do you want to drop?")
+            print("What do you want to drop?") # the user did not input an item, or it didn't exist

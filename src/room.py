@@ -3,7 +3,6 @@ from player import Player
 # Implement a class to hold room information. This should have name and
 # description attributes.
 
-
 class Room:
     def __init__(self, name, description, *items):
         self.name = name
@@ -14,6 +13,8 @@ class Room:
         self.w_to = None
         self.items = []
 
+        # if items were included in the room initialization, then append them
+        # to our item list for the room
         if len(items) > 0:
             for item in items:
                 self.items.append(item)
@@ -36,11 +37,3 @@ class Room:
                 return existing_item
             else:
                 print("That item does not exist in this room.")
-
-    # # pickup item from room
-    def pickup_item(self, item):
-        if self.items == []:
-            print("The item does not exist.")
-        else:
-            self.items.remove(item)
-            Player.pickup_item(item)

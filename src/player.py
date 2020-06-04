@@ -3,7 +3,6 @@ from item import Item
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 
-
 class Player:
     def __init__(self, name, current_room, inventory=[]):
         self.name = name
@@ -29,7 +28,7 @@ class Player:
         self.inventory.remove(item)
         print(f"You have dropped a(n) {item.name}.")
 
-    # find item in player inventory
+    # find item in player inventory to determine if it exists
     def find_item(self, item):
         for existing_item in self.inventory:
             if item.lower() == existing_item.name.lower():
