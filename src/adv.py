@@ -39,7 +39,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player(room['outside'])
+player = Player("Alex", room['outside'])
 
 # print(player)
 
@@ -58,29 +58,35 @@ player = Player(room['outside'])
 moves = ['n', 's', 'e', 'w']
 actions = ['i', 'inventory']
 
-# welcome the user and give them instructions
-print("Welcome, adventurer. Navigate to find the treasure.\n")
+# welcome the user and give them instructions on how to play
+print("Welcome, adventurer. Explore until you find the treasure!")
+print("*" * 70)
+print("CONTROLS:")
 print(
-    "You can move your player using [n] north, [s] south, [e] east, and [w] west.\n")
+    "Move using [n] north, [s] south, [e] east, and [w] west.")
 print(
-    "Pickup items using [get ItemName], drop items using [drop ItemName], or quit [q]\n")
+    "Pickup items using [get ItemName], drop items using [drop ItemName], or quit [q]")
+print("*" * 70)
 
 while True:
-    print("Currently: " + player.current_room.name)
+    print("Current Area: " + player.current_room.name)
     print(player.current_room.description)
+
+    # if there are any available items in the room, display them to the player
     for item in player.current_room.items:
-        print(f"You see (a) {item}")
-    # print(f'Items currently in the room: {player.current_room.items}')
+        print(f"You see a(n) {item}")
+
     print('What would you like to do?\n')
     player_input = input("> ")
 
-    if player_input == 'q':
+    if player_input == 'q':  # quit the game if the user inputs q
         exit()
-    elif player_input in moves:
+    elif player_input in moves:  # if the user selects a direction to move, use our move method
         player.move(f'{player_input}_to')
-    elif player_input in actions:
+    elif player_input in actions:  # if the user opens their inventory, use our display inventory method
         player.display_inventory()
-    elif "get" in player_input:
+    elif "get" in player_input or "take" in player_input:
+        print("Attempting to pick up item...")
         words = player_input.split()
 
         if len(words) > 1:
@@ -91,12 +97,11 @@ while True:
             if found_item:
                 player.pickup_item(found_item)
                 player.current_room.remove_item(found_item)
-        # else:
-        #     print("What are you trying to pickup?")
+        else:
+            print("What are you trying to pickup?")
 
     elif "drop" in player_input:
         print("Attempting to drop...")
-
         words = player_input.split()
 
         if len(words) > 1:

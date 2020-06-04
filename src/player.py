@@ -1,8 +1,12 @@
+from item import Item
+
 # Write a class to hold player information, e.g. what room they are in
 # currently.
 
+
 class Player:
-    def __init__(self, current_room, inventory=[]):
+    def __init__(self, name, current_room, inventory=[]):
+        self.name = name
         self.current_room = current_room
         self.inventory = inventory
 
@@ -18,22 +22,22 @@ class Player:
     # player method to pickup items from a room and add them to player's inventory
     def pickup_item(self, item):
         self.inventory.append(item)
-        print(f"You have picked up {item}.")
+        print(f"You have picked up a(n) {item.name}.")
 
     # player method to drop items from the player's inventory
     def drop_item(self, item):
         self.inventory.remove(item)
-        print(f"You have dropped {item}.")
+        print(f"You have dropped a(n) {item.name}.")
 
     # find item in player inventory
     def find_item(self, item):
         for existing_item in self.inventory:
             if item.lower() == existing_item.name.lower():
-                return existing_item 
+                return existing_item
 
     # display the items in a player's inventory
     def display_inventory(self):
-        if len(self.inventory) == 0:
+        if len(self.inventory) == 0:  # if the player's inventory is empty, let them know
             print("You do not have any items in your inventory.")
         else:
             print("Current Inventory:")
